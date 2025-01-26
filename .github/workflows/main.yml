@@ -16,6 +16,10 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
+      - name: Bypass husky pre-commit hook
+        run: |
+          export HUSKY_SKIP_HOOKS=1
+
       - name: Generate and commit lock file
         run: |
           pnpm install
