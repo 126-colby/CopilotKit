@@ -10,34 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - name: Bypass husky pre-commit hook
-        run: export HUSKY_SKIP_HOOKS=1
-
-      - name: Generate and commit lock file
-        run: |
-          pnpm install
-          git config --global user.email "jmbish04@gmail.com"
-          git config --global user.name "Justin"
-          if [ -n "$(git status --porcelain pnpm-lock.yaml)" ]; then
-            git add pnpm-lock.yaml
-            git commit -m "Generate pnpm lock file"
-            git push
-          else
-            echo "Lock file is up to date, no changes to commit."
-          fi
-
-      - name: Install dependencies
-        run: |
-          pnpm install
-          pnpm run build
-
-      - name: Deploy to Cloudflare Workers with Wrangler
-        uses: cloudflare/wrangler-action@v3.13.1
+      - uses: actions/checkout@v4
+      - name: Deploy
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy --project-name=example
+
+      - name: print wrangler command output
+        env:
+          CMD_OUTPUT: ${{ steps.deploy.outputs.command-output }}
+        run: echo $CMD_OUTPUT
