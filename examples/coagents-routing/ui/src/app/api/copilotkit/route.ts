@@ -1,3 +1,6 @@
+import { config } from 'dotenv';
+config();
+
 import { NextRequest } from "next/server";
 import {
   CopilotRuntime,
