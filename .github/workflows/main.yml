@@ -17,14 +17,13 @@ jobs:
         run: npm install -g pnpm
 
       - name: Bypass husky pre-commit hook
-        run: |
-          export HUSKY_SKIP_HOOKS=1
+        run: export HUSKY_SKIP_HOOKS=1
 
       - name: Generate and commit lock file
         run: |
           pnpm install
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "jmbish04@gmail.com"
+          git config --global user.name "Justin"
           git add pnpm-lock.yaml
           git commit -m "Generate pnpm lock file"
           git push
