@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g pnpm
-          pnpm install
+          pnpm install --no-frozen-lockfile
           pnpm add -D webpack webpack-cli typescript ts-loader
 
       - name: Build project
