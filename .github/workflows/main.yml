@@ -16,6 +16,15 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
+      - name: Generate and commit lock file
+        run: |
+          pnpm install
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git add pnpm-lock.yaml
+          git commit -m "Generate pnpm lock file"
+          git push
+
       - name: Install dependencies
         run: |
           pnpm install
