@@ -1,1 +1,4 @@
-cd copilotkit && pnpm run precommit
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+cd CopilotKit && pnpm run precommit
