@@ -12,8 +12,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: |
+          npm install -g pnpm
+          pnpm install
+          pnpm add -D webpack webpack-cli typescript ts-loader
+
+      - name: Build project
+        run: pnpm run build
 
       - name: Deploy
         id: deploy
@@ -22,6 +33,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           packageManager: pnpm
+          command: deploy examples/coagents-routing/ui/src/app/api/copilotkit/route.ts
 
       - name: Print wrangler command output
         env:
