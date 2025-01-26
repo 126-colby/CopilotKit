@@ -1,0 +1,10 @@
+# wrangler.toml
+name = "CopilotKit"
+type = "typescript"  # or "typescript" if using TypeScript
+account_id ="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" 
+workers_dev = true
+main = "examples/coagents-routing/ui/src/app/api/copilotkit/route.ts"
+
+# Environment variables
+[env.production]
+vars = { LANGSMITH_API_KEY = "${{ secrets.LANGSMITH_API_KEY }}", REMOTE_ACTION_URL = "copilot.hacolby.app" }
