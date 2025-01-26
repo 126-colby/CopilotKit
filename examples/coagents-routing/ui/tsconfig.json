@@ -1,40 +1,37 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
+    "target": "ES2017",                     // Specify ECMAScript target version
+    "module": "esnext",                     // Specify module code generation
+    "moduleResolution": "bundler",          // Set module resolution strategy
+    "lib": ["dom", "dom.iterable", "esnext"], // Include libraries
+    "outDir": "../../../../../dist",        // Adjust the output directory path if necessary
+    "rootDir": "./src",                     // Specify the root directory of input files
+    "strict": true,                         // Enable all strict type-checking options
+    "esModuleInterop": true,                // Enable compatibility with CommonJS and ES modules
+    "skipLibCheck": true,                   // Skip type checking of all declaration files
+    "allowJs": true,                        // Allow JavaScript files
+    "noEmit": true,                         // Do not emit outputs
+    "resolveJsonModule": true,              // Include modules for JSON files
+    "isolatedModules": true,                // Ensure each file is a module
+    "jsx": "preserve",                      // Preserve JSX
+    "incremental": true,                    // Enable incremental compilation
     "plugins": [
       {
-        "name": "next"
+        "name": "next"                      // Include Next.js plugin
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-    "target": "ES2017"
+      "@/*": ["./src/*"]                    // Define path mappings
+    }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "./src/**/*"                            // Include all TypeScript files in the src directory
   ],
   "exclude": [
-    "node_modules"
+    "node_modules"                          // Exclude node_modules directory
   ]
 }
